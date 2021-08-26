@@ -208,7 +208,24 @@ editConatct = () => {
     }
   }
 };
-
+//delete contact from addressbook.
+deleteConatct = () => {
+  let contactName = prompt(
+    "Enter First-Name of contact which you want to delete : "
+  );
+  let isdelete = false;
+  for (var index = 0; index < addressBook.length; index++) {
+    if (addressBook[index].firstName == contactName) {
+      addressBook.splice(index, 1);
+      isdelete = true;
+    }
+  }
+  if (isdelete) {
+    console.log("Contact deleted sucessfully.");
+  } else {
+    console.log("Contact not found.");
+  }
+};
 //array to store new contact.
 let addressBook = new Array();
 
@@ -218,12 +235,13 @@ console.log("Welcome to address book");
 let isExit = false;
 while (!isExit) {
   console.log(
-    "1 Add-Contact :\n2 Display-Contact :\n3 Edit-Contact:\n4 Exit :"
+    "1 Add-Contact :\n2 Display-Contact :\n3 Edit-Contact:\n4 Delete-Contact:\n5 Exit :"
   );
 
   let userChoice = prompt("Enter the number as per against your choice : ");
   switch (userChoice) {
     case "1":
+      //creating and add new contacts.
       try {
         addressBook.push(createContatct());
       } catch (error) {
@@ -231,12 +249,19 @@ while (!isExit) {
       }
       break;
     case "2":
+      //display all contacts
       console.log(addressBook);
       break;
     case "3":
+      //edit contact
       editConatct();
       break;
     case "4":
+      //deleate contact
+      deleteConatct();
+      break;
+    case "5":
+      //exit from addressbook program
       console.log("Thank You For Using Address-Book.");
       isExit = true;
       break;
