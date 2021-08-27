@@ -179,7 +179,7 @@ addressBook.push(
     "Kuldeep",
     "Singh",
     "sriganganagar",
-    "Ganganagar",
+    "ganganagar",
     "Rajasthan",
     402110,
     "91 9987000000",
@@ -273,20 +273,28 @@ countContact = () => {
     .reduce((numberOfContact) => numberOfContact + 1, 0);
   console.log("\nNumber of contacts are : " + numberOfContact + " \n");
 };
-//searching person in a city or state.
-searchContact = () => {
+
+function search() {
   let searchKey = prompt(
-    "\nEnter city or state of contact which you want to search : "
+    "Enter city or state of contact which you want to search: "
   );
-  let searchResultList = addressBook.filter(
+  return addressBook.filter(
     (contact) => contact.city == searchKey || contact.state == searchKey
   );
+}
+//method to search contact
+function searchContact() {
+  let searchResultList = search();
   console.log(
-    `The person having ${searchKey} are ${searchResultList.map(
-      (contact) => contact.firstName
-    )}`
+    `The person are ${searchResultList.map((contact) => contact.firstName)}`
   );
-};
+}
+
+//method to view contact
+function viewContact() {
+  let searchResultList = search();
+  console.log(`The person are ${searchResultList}`);
+}
 
 //user choice and calling functions.
 console.log("Welcome to address book");
@@ -294,7 +302,7 @@ console.log("Welcome to address book");
 let isExit = false;
 while (!isExit) {
   console.log(
-    "1 Add-Contact :\n2 Display-Contact :\n3 Print Count Of Contacts In Address-Book:\n4 Edit-Contact:\n5 Delete-Contact:\n6 Search Person By City Or State:\n7 Exit :"
+    "1 Add-Contact :\n2 Display-Contact :\n3 Print Count Of Contacts In Address-Book:\n4 Edit-Contact:\n5 Delete-Contact:\n6 Search Person By City Or State:\n7 View Contact By City Or State:\n8 Exit :"
   );
 
   let userChoice = prompt("Enter the number as per against your choice : ");
@@ -328,6 +336,10 @@ while (!isExit) {
       searchContact();
       break;
     case "7":
+      //view contact by city or state.
+      viewContact();
+      break;
+    case "8":
       //exit from addressbook program
       console.log("Thank You For Using Address-Book.");
       isExit = true;
