@@ -186,6 +186,31 @@ addressBook.push(
     "kuldeep@gmail.com"
   )
 );
+addressBook.push(
+  new Contact(
+    "Veeru",
+    "Singh",
+    "Shriwardhan",
+    "Mumbai",
+    "Maharashta",
+    402110,
+    "91 9987007700",
+    "veeru@gmail.com"
+  )
+);
+
+addressBook.push(
+  new Contact(
+    "Sukhmander",
+    "Singh",
+    "sriganganagar",
+    "ganganagar",
+    "Rajasthan",
+    402110,
+    "91 9987000000",
+    "sukhmander@gmail.com"
+  )
+);
 //prompt message on console for user input.
 const prompt = require("prompt-sync")();
 
@@ -295,14 +320,22 @@ function viewContact() {
   let searchResultList = search();
   console.log(`The person are ${searchResultList}`);
 }
-
+//function to count contact
+countContactByPlace = () => {
+  let searchResultList = search();
+  let numberOfContact = searchResultList.reduce(
+    (numberOfContact) => numberOfContact + 1,
+    0
+  );
+  console.log("Number of contacts are " + numberOfContact);
+};
 //user choice and calling functions.
 console.log("Welcome to address book");
 
 let isExit = false;
 while (!isExit) {
   console.log(
-    "1 Add-Contact :\n2 Display-Contact :\n3 Print Count Of Contacts In Address-Book:\n4 Edit-Contact:\n5 Delete-Contact:\n6 Search Person By City Or State:\n7 View Contact By City Or State:\n8 Exit :"
+    "1 Add-Contact :\n2 Display-Contact :\n3 Print Count Of Contacts In Address-Book:\n4 Edit-Contact:\n5 Delete-Contact:\n6 Search Person By City Or State:\n7 View Contact By City Or State:\n8 Count By City Or State:\n9 Exit :"
   );
 
   let userChoice = prompt("Enter the number as per against your choice : ");
@@ -340,6 +373,10 @@ while (!isExit) {
       viewContact();
       break;
     case "8":
+      //count by city or state.
+      countContactByPlace();
+      break;
+    case "9":
       //exit from addressbook program
       console.log("Thank You For Using Address-Book.");
       isExit = true;
