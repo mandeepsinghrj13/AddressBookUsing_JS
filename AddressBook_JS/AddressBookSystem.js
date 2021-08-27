@@ -186,7 +186,21 @@ createContatct = () => {
     email
   );
 };
+//method to add contact and check duplicate entries
+function checkDuplicateContact() {
+  //calling createcontact function.
+  let newContact = createContatct();
 
+  let alreadyExists = addressBook.filter(
+    (contact) => contact.firstName == newContact.firstName
+  ).length;
+  if (alreadyExists) {
+    console.log("\nConatct already exists.\n");
+  } else {
+    addressBook.push(newContact);
+    console.log("\nAdded sucessfully\n");
+  }
+}
 //function to edit contact
 editConatct = () => {
   let firstName = prompt(
@@ -223,9 +237,9 @@ deleteConatct = () => {
     }
   }
   if (isdelete) {
-    console.log("Contact deleted sucessfully.");
+    console.log("/nContact deleted sucessfully.\n");
   } else {
-    console.log("Contact not found.");
+    console.log("\nContact not found.\n");
   }
 };
 //fuction to count number of contact in addressbook.
@@ -249,7 +263,7 @@ while (!isExit) {
     case "1":
       //creating and add new contacts.
       try {
-        addressBook.push(createContatct());
+        checkDuplicateContact();
       } catch (error) {
         console.error(error);
       }
