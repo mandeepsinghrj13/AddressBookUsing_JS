@@ -159,6 +159,8 @@ class Contact {
     );
   }
 }
+//array to store new contact.
+let addressBook = new Array();
 
 //prompt message on console for user input.
 const prompt = require("prompt-sync")();
@@ -226,16 +228,20 @@ deleteConatct = () => {
     console.log("Contact not found.");
   }
 };
-//array to store new contact.
-let addressBook = new Array();
-
+//fuction to count number of contact in addressbook.
+countContact = () => {
+  let numberOfContact = addressBook
+    .map((contact) => contact)
+    .reduce((numberOfContact) => numberOfContact + 1, 0);
+  console.log("\nNumber of contacts are : " + numberOfContact + " \n");
+};
 //user choice and calling functions.
 console.log("Welcome to address book");
 
 let isExit = false;
 while (!isExit) {
   console.log(
-    "1 Add-Contact :\n2 Display-Contact :\n3 Edit-Contact:\n4 Delete-Contact:\n5 Exit :"
+    "1 Add-Contact :\n2 Display-Contact :\n3 Print Count Of Contacts In Address-Book:\n4 Edit-Contact:\n5 Delete-Contact:\n6 Exit :"
   );
 
   let userChoice = prompt("Enter the number as per against your choice : ");
@@ -253,14 +259,18 @@ while (!isExit) {
       console.log(addressBook);
       break;
     case "3":
+      //printing number of contacts in addressbook.
+      countContact();
+      break;
+    case "4":
       //edit contact
       editConatct();
       break;
-    case "4":
+    case "5":
       //deleate contact
       deleteConatct();
       break;
-    case "5":
+    case "6":
       //exit from addressbook program
       console.log("Thank You For Using Address-Book.");
       isExit = true;
